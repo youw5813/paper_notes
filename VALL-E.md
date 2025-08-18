@@ -15,17 +15,17 @@ annotation-target::[[VALL-E.pdf|Neural Codec Language Models are Zero-Shot Text 
 VALLE-E is a LLM-based TTS model that regards speech synthesis as a conditional codec language modelling task with neural codec speech codes. It's trained on a much larger dataset (60k hours English multi-speaker data) compared with other SOTA approaches (less than 600 hours).
 ## Main Ideas
 ### Problem Formulation
-$D=\{x_i, y_i\}$: dataset
-$x=\{x_0, x_1, ..., x_L\}$: phoneme sequence
-$y$: audio sample
+$D=\{x_i, y_i\}$: dataset. 
+$x=\{x_0, x_1, ..., x_L\}$: phoneme sequence  
+$y$: audio sample  
 
-$C$: 2 dimensional acoustic code matrix. shape [t, 8] (8 codebooks)
-$T$: utterance length / time stamps
-$c_{t,:}$: eight codes for frame t. shape [1, 8]
-$c_{:,j}$: code sequence from the $j$-th codebook. shape [t, 8-j]
+$C$: 2 dimensional acoustic code matrix. shape [t, 8] (8 codebooks)  
+$T$: utterance length / time stamps  
+$c_{t,:}$: eight codes for frame t. shape [1, 8]  
+$c_{:,j}$: code sequence from the $j$-th codebook. shape [t, 8-j]  
 
-$Encodec(y)=C^{T*8}$ 
-$Decodec(C)\approx\hat{y}$
+$Encodec(y)=C^{T*8}$   
+$Decodec(C)\approx\hat{y}$  
 ### AR Codec Language Modelling 
 - AR language model generates the tokens from the 1st quantizer. 
 - AR model consists of 
