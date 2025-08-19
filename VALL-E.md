@@ -15,7 +15,7 @@ annotation-target::[[VALL-E.pdf|Neural Codec Language Models are Zero-Shot Text 
 VALLE-E is a LLM-based TTS model that regards speech synthesis as a conditional codec language modelling task with neural codec speech codes. It's trained on a much larger dataset (60k hours English multi-speaker data) compared with other SOTA approaches (less than 600 hours).
 ## Main Ideas
 ### Problem Formulation
-$D=\{x_i, y_i\}$: dataset. 
+$D=\{x_i, y_i\}$: dataset   
 $x=\{x_0, x_1, ..., x_L\}$: phoneme sequence  
 $y$: audio sample  
 
