@@ -69,3 +69,6 @@
 	- They propose 2 principle in building an agentic system
 		- Share context
 		- Actions carry implicit decisions
+- [Context Engineering: Elevating AI Strategy from Prompt Crafting to Enterprise Competence \| by Adnan Masood, PhD. \| Jun, 2025 \| Medium](https://medium.com/@adnanmasood/context-engineering-elevating-ai-strategy-from-prompt-crafting-to-enterprise-competence-b036d3f7f76f) 
+	- #TODO 
+

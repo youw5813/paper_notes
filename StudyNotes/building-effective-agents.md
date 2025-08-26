@@ -1,4 +1,5 @@
-# Building Effective Agents
+# Building Effective Agent Systems
+
 [Building Effective AI Agents \\ Anthropic](https://www.anthropic.com/engineering/building-effective-agents)
 - Workflow vs Agent
 	- Workflow: systems where where LLMs and tools are orchestrated to follow a pre-defined path
@@ -24,17 +25,51 @@
 	  ![](../Images/gen-eval.png)
 - Agents
 	- LLMs using tools based on environmental feedback in a loop.
+- Core Principles
+	- Maintain **simplicity** in your agent's design.
+	- Prioritize **transparency** by explicitly showing the agent’s planning steps.
+	- Carefully craft your agent-computer interface (ACI) through thorough tool **documentation and testing**.
+
+
+[How we built our multi-agent research system \\ Anthropic](https://www.anthropic.com/engineering/multi-agent-research-system)
+- Benefit of multi-agent system
+	- Works better for open-ended tasks like research, where no pre-defined pipeline is provided. 
+	- Maintain multiple threads of investigation independently.
+	- Easily scale performance through subagents collaborating and working in parallel.
+- Why multi-agent systems work?
+	- More tokens spent (main reason)
+	- number of tool calls
+	- model choice
+- Downsides of multi-agent systems
+	- Burning tokens fast (costly)
+	- Not suitable for tasks that require all the subagents to share the same context or involve heavy dependency between subagents (e.g. coding). It's suitable for tasks that require a lot of parallelised work. 
+- Architecture Overview
+	- Orchestrator - Worker
+	- A lead agent coordinates the process and delegates tasks to subagents that work in parallel.
+	- ![](../Images/anthropic-research-agent.png)
+- Prompting Strategy
+- Evaluation
+- Engineering Challenges
+- Other Findings
+
 
 [Introducing ambient agents](https://blog.langchain.com/introducing-ambient-agents/)
 
-[How we built our multi-agent research system \\ Anthropic](https://www.anthropic.com/engineering/multi-agent-research-system)
+
 
 [a-practical-guide-to-building-agents.pdf](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf)
 
 [GitHub - humanlayer/12-factor-agents: What are the principles we can use to build LLM-powered software that is actually good enough to put in the hands of production customers?](https://github.com/humanlayer/12-factor-agents)
 
 [Introducing the Model Context Protocol \\ Anthropic](https://www.anthropic.com/news/model-context-protocol)
+[Introduction - Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro)
+
+[Extended Thinking \ Anthropic](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking#interleaved-thinking)
+
+[anthropic-cookbook/patterns/agents/prompts at main · anthropics/anthropic-cookbook · GitHub](https://github.com/anthropics/anthropic-cookbook/tree/main/patterns/agents/prompts)
+[Rainbow Deploys with Kubernetes \| Brandon Dimcheff](https://brandon.dimcheff.com/2018/02/rainbow-deploys-with-kubernetes/)
 
 Questions to answer:
 1. Shall we build a agentic system or a workflow?
 2. Shall we build a single agent system or a multi-agent system?
+3. How to build the tool system/agent-tool interface?
