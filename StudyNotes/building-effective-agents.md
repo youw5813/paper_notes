@@ -64,7 +64,7 @@
 - Engineering Challenges
 	- Agents produce cascaded errors. A mechanism that allows agent to start from where it fails rather than from the beginning is necessary.
 	- The non-deterministic nature of LLM makes it hard to debug. Full production tracing helps to diagnose problems and fix issues systematically. Monitoring agents' interaction structures without monitoring the content could help with debugging and maintaining user privacy at the same time.
-	- Deployment needs careful coordination. This is because agents are constantly running and updating could breaking existing agents. Use [Rainbow Deployment]([Rainbow Deployment: Why and how to do it \| Release](https://release.com/blog/rainbow-deployment-why-and-how-to-do-it)) to update instead of updating all agents at once. 
+	- Deployment needs careful coordination. This is because agents are constantly running and updating could breaking existing agents. Use [Rainbow Deployment](https://release.com/blog/rainbow-deployment-why-and-how-to-do-it) to update instead of updating all agents at once. 
 	- Synchronous vs Asynchronous execution. Synchronous execution creates bottle neck because subagents can't coordinate with each other and the speed could be slow down by one subagent. Asynchronous solves the above issues but brings other challenges like results coordination and error propagation due to increased complexity. 
 - Other Findings
 	- End-state evaluation is preferred compared with evaluating the whole process step by step. 
