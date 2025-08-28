@@ -48,28 +48,35 @@
 	- A lead agent coordinates the process and delegates tasks to subagents that work in parallel.
 	- ![](../Images/anthropic-research-agent.png)
 - Prompting Strategy
+	- Think like your agents. Watching the work process of your agents step by step could help with pinpoint the problems.
+	- Teach the orchestrator how to delegate. Without sufficient guidance, the lead agent won't be able to distribute tasks effectively. There could be duplicates or gaps among subtasks. 
+	- Scale the effort based on the task. Provide guidance to the agent on the scale of the tasks, so that the right amount of effort can be used. 
+	- Tool design and selection are critical. Bad tool description or using wrong tools could confuse the agent. 
+	- Self-improve is effective. A test agent can be used to analyze mistakes and improve for example the tool description to avoid future mistakes. 
+	- Parallelization of the task can improve speed a lot. i.e. spinning up 3-5 subagents in parallel rather than sequentially. 
+	- Breadth before depth in searching.
+	- Visualizing the thinking process using additional output tokens. This can be used as a scratchpad. The thinking process can be used by the lead agent to plan for the tasks, such as how many subagents to use and what tools to call. 
 - Evaluation
+	- The evaluation of mutli-agent systems faces more challenges due to the nature that multiple paths could be utilised to solve the same task.
+	- Evaluate with small batches as early as possible to capture easy to fix mistakes and iterate fast. 
+	- Use LLM to evaluate can scale fast. 
+	- Human evaluation is still crucial to catch automation misses.
 - Engineering Challenges
+	- Agents produce cascaded errors. A mechanism that allows agent to start from where it fails rather than from the beginning is necessary.
+	- The non-deterministic nature of LLM makes it hard to debug. Full production tracing helps to diagnose problems and fix issues systematically. Monitoring agents' interaction structures without monitoring the content could help with debugging and maintaining user privacy at the same time.
+	- Deployment needs careful coordination. This is because agents are constantly running and updating could breaking existing agents. Use [Rainbow Deployment]([Rainbow Deployment: Why and how to do it \| Release](https://release.com/blog/rainbow-deployment-why-and-how-to-do-it)) to update instead of updating all agents at once. 
+	- Synchronous vs Asynchronous execution. Synchronous execution creates bottle neck because subagents can't coordinate with each other and the speed could be slow down by one subagent. Asynchronous solves the above issues but brings other challenges like results coordination and error propagation due to increased complexity. 
 - Other Findings
+	- End-state evaluation is preferred compared with evaluating the whole process step by step. 
+	- Manage long conversations with external memory mechanism and context summarisation. 
+	- Allowing subagents to generate direct output to store in a filesystem rather than going through the lead agent every time to reduce information loss during the communication. 
+
+#TODO 
+- [GitHub - humanlayer/12-factor-agents: What are the principles we can use to build LLM-powered software that is actually good enough to put in the hands of production customers?](https://github.com/humanlayer/12-factor-agents)
+- [a-practical-guide-to-building-agents.pdf](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf)
+- [Introducing ambient agents](https://blog.langchain.com/introducing-ambient-agents/)
 
 
-[Introducing ambient agents](https://blog.langchain.com/introducing-ambient-agents/)
 
 
 
-[a-practical-guide-to-building-agents.pdf](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf)
-
-[GitHub - humanlayer/12-factor-agents: What are the principles we can use to build LLM-powered software that is actually good enough to put in the hands of production customers?](https://github.com/humanlayer/12-factor-agents)
-
-[Introducing the Model Context Protocol \\ Anthropic](https://www.anthropic.com/news/model-context-protocol)
-[Introduction - Model Context Protocol](https://modelcontextprotocol.io/docs/getting-started/intro)
-
-[Extended Thinking \ Anthropic](https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking#interleaved-thinking)
-
-[anthropic-cookbook/patterns/agents/prompts at main · anthropics/anthropic-cookbook · GitHub](https://github.com/anthropics/anthropic-cookbook/tree/main/patterns/agents/prompts)
-[Rainbow Deploys with Kubernetes \| Brandon Dimcheff](https://brandon.dimcheff.com/2018/02/rainbow-deploys-with-kubernetes/)
-
-Questions to answer:
-1. Shall we build a agentic system or a workflow?
-2. Shall we build a single agent system or a multi-agent system?
-3. How to build the tool system/agent-tool interface?
